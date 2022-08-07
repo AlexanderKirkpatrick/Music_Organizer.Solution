@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music_Organizer.Models.Medium
+
+<h4>Add a new Medium</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+  <input type="submit" value="Add new Medium" />
+}
+<p>@Html.ActionLink("Show all Mediums", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

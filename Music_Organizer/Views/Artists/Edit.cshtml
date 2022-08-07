@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music_Organizer.Models.Artist
+
+<h2>Edit</h2>
+<br>
+<br>
+<h4>Editing the Artist: @Html.DisplayFor(model => model.Name)</h4>
+<br>
+<br>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ArtistId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  @Html.Label("Select Album")
+  @Html.DropDownList("AlbumId")
+
+  @Html.Label("Select Medium")
+  @Html.DropDownList("MediumId")
+
+  
+  <br>
+  <br>
+  <input type="submit" value="Save" />
+}
+<br>
+<br>
+<br>
+<p>@Html.ActionLink("Show All Artists", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

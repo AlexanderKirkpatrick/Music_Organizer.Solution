@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+@using Music_Organizer.Models 
+@model Music_Organizer.Models.Artist
+
+<h2>Artist Details</h2>
+<br>
+<br>
+@using (Html.BeginForm()) 
+{
+  <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
+  <p>Albums:</p>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Album.Name</li>
+  }
+  </ul>
+}
+<br>
+<br>
+<br>
+<p>@Html.ActionLink("Add a Album", "AddAlbum", new { id = Model.ArtistId })</p>
+<p>@Html.ActionLink("Edit Artist", "Edit", new { id = Model.ArtistId })</p>
+<p>@Html.ActionLink("Delete Artist", "Delete", new { id = Model.ArtistId })</p>
+<p>@Html.ActionLink("Show All Artists", "Index")</p>
+<p>@Html.ActionLink("Show All Albums", "Index", "Albums")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

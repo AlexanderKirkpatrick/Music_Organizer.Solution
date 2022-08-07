@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music_Organizer.Models.Medium;
+
+<h2>Medium Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Medium does not contain any Artists</p>
+}
+else
+{
+  <h4>Artists the Medium contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Artist.Name</li>
+  }
+  </ul>
+}
+
+@if(@Model.JoinMediumAlbum.Count == 0)
+{
+  <p>This Medium does not contain any Albums!</p>
+}
+else
+{
+  <h4>Albums the Medium contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinMediumAlbum)
+  {
+    <li>@join.Album.Name</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to Mediums", "Index")</p>
+<p>@Html.ActionLink("Edit Medium", "Edit", new { id = Model.MediumId })</p>
+<p>@Html.ActionLink("Delete Medium", "Delete", new { id = Model.MediumId })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

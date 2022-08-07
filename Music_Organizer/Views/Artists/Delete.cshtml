@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music_Organizer.Models.Artist
+
+<h2>Are you sure you want to delete this Artist?</h2>
+<br>
+<br>
+@using (Html.BeginForm())
+{
+  <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
+  <br>
+  <br>
+  <input type="submit" value="Delete" />
+}
+<br>
+<br>
+<br>
+<p>@Html.ActionLink("Show All Artists", "Index")</p>
+<p>@Html.ActionLink("Show All Albums", "Index", "Albums")</p>

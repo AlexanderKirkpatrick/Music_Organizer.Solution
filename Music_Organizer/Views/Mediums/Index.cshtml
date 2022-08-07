@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Music_Organizer.Models;
+
+<h1>Mediums</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No Mediums have been added yet!</h3>
+} 
+
+<ul>
+  @foreach(Medium medium in Model)
+  {
+    <li>@Html.ActionLink($"{medium.Name}", "Details", new { id = medium.MediumId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new Medium", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
