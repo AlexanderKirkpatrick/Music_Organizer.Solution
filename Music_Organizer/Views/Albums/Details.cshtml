@@ -2,6 +2,7 @@
   Layout = "_Layout";
 }
 
+@using Music_Organizer.Models
 @model Music_Organizer.Models.Album;
 
 <h2>Album Details</h2>
@@ -14,15 +15,23 @@
 }
 else
 {
-  <h4>Artists the Album contains:</h4>
+  <h4>The album's artist:</h4>
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
     <li>@join.Artist.Name</li>
   }
   </ul>
+  <br>
+  <h4>Mediums the album are on:</h4>
+  <ul>
+  @foreach(var join in Model.JoinMediumAlbum)
+  {
+    <li>@join.Medium.Name</li>
+  }
+  </ul>
 }
-
+<p>@Html.ActionLink("Add a Medium", "AddMedium", new { id = Model.AlbumId })</p>
 <p>@Html.ActionLink("Back to Albums", "Index")</p>
 <p>@Html.ActionLink("Edit Album", "Edit", new { id = Model.AlbumId })</p>
 <p>@Html.ActionLink("Delete Album", "Delete", new { id = Model.AlbumId })</p>

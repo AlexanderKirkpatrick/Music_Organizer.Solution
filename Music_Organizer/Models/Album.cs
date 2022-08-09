@@ -7,6 +7,7 @@ namespace Music_Organizer.Models
         public Album()
         {
             this.JoinEntities = new HashSet<AlbumArtist>();
+            this.JoinMediumAlbum = new HashSet<MediumAlbum>();
             AlbumOwned = false;
         }
 
@@ -14,5 +15,6 @@ namespace Music_Organizer.Models
         public string Name { get; set; }
         public bool AlbumOwned { get; set; }
         public virtual ICollection<AlbumArtist> JoinEntities { get; set; }
+        public virtual ICollection<MediumAlbum> JoinMediumAlbum { get; set; }
     }
 }

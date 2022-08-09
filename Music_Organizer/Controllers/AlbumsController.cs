@@ -44,9 +44,11 @@ namespace Music_Organizer.Controllers
     public ActionResult Details(int id)
     {
       var thisAlbum = _db.Albums
-        .Include(Album => Album.JoinEntities)
+        .Include(album => album.JoinEntities)
         .ThenInclude(join => join.Artist)
-        .FirstOrDefault(Album => Album.AlbumId == id);
+        .Include(album => album.JoinMediumAlbum)
+        .ThenInclude(join => join.Medium)
+        .FirstOrDefault(album => album.AlbumId == id);
       return View(thisAlbum);
     }
     
@@ -83,6 +85,33 @@ namespace Music_Organizer.Controllers
       _db.Albums.Remove(thisAlbum);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult AddMedium(int id)
+    {
+      var thisAlbum = _db.Albums.FirstOrDefault(album => album.AlbumId == id);
+      ViewBag.MediumId = new SelectList(_db.Mediums, "MediumId", "Name");
+      return View(thisAlbum);
+    }
+
+    [HttpPost]
+    public ActionResult AddMedium(Album album, int MediumId)
+    {
+      if (MediumId != 0)
+      {
+        _db.MediumAlbum.Add(new MediumAlbum() { MediumId = MediumId, AlbumId = album.AlbumId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteMedium(int joinId)
+    {
+        var joinEntry = _db.MediumAlbum.FirstOrDefault(entry => entry.MediumAlbumId == joinId);
+        _db.MediumAlbum.Remove(joinEntry);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
   }
 }

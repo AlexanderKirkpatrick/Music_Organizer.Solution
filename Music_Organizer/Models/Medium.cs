@@ -12,6 +12,7 @@ namespace Music_Organizer.Models
 
         public int MediumId { get; set; }
         public string Name { get; set; }
+        public int AlbumId { get; set; }
         public virtual ICollection<MediumArtist> JoinEntities { get; set; }
         public virtual ICollection<MediumAlbum> JoinMediumAlbum { get; set; }
     }
