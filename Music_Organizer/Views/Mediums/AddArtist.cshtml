@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music_Organizer.Models.Medium
+
+<h2>Add an Artist</h2>
+
+<h4>Add an artist to this medium: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.MediumId)
+
+    @Html.Label("Select Artist")
+    @Html.DropDownList("ArtistId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Music_Organizer.Models;
@@ -72,6 +73,33 @@ namespace Music_Organizer.Controllers
       _db.Mediums.Remove(thisMedium);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult AddAlbum(int id)
+    {
+      var thisMedium = _db.Mediums.FirstOrDefault(medium => medium.MediumId == id);
+      ViewBag.AlbumId = new SelectList(_db.Albums, "AlbumId", "Name");
+      return View(thisMedium);
+    }
+
+    [HttpPost]
+    public ActionResult AddAlbum(Medium medium, int AlbumId)
+    {
+      if (AlbumId != 0)
+      {
+        _db.MediumAlbum.Add(new MediumAlbum() { AlbumId = AlbumId, MediumId = medium.MediumId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteAlbum(int joinId)
+    {
+        var joinEntry = _db.MediumAlbum.FirstOrDefault(entry => entry.MediumAlbumId == joinId);
+        _db.MediumAlbum.Remove(joinEntry);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
   }
 }

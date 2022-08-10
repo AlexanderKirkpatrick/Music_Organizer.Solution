@@ -14,7 +14,7 @@
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Album.Name</li>
+    <li><a href=/Albums/Details/@join.Album.AlbumId>@join.Album.Name</a></li>
   }
   </ul>
 }
@@ -22,6 +22,7 @@
 <br>
 <br>
 <p>@Html.ActionLink("Add a Album", "AddAlbum", new { id = Model.ArtistId })</p>
+<p>@Html.ActionLink("Add a Medium", "AddMedium", new { id = Model.ArtistId })</p>
 <p>@Html.ActionLink("Edit Artist", "Edit", new { id = Model.ArtistId })</p>
 <p>@Html.ActionLink("Delete Artist", "Delete", new { id = Model.ArtistId })</p>
 <p>@Html.ActionLink("Show All Artists", "Index")</p>

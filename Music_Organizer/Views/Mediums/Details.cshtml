@@ -37,7 +37,8 @@ else
   }
   </ul>
 }
-
+<p>@Html.ActionLink("Add a Album", "AddAlbum", "Mediums", new { id = Model.MediumId })</p>
+<p>@Html.ActionLink("Add an Artist", "AddArtist", "Mediums", new { id = Model.MediumId })</p>
 <p>@Html.ActionLink("Back to Mediums", "Index")</p>
 <p>@Html.ActionLink("Edit Medium", "Edit", new { id = Model.MediumId })</p>
 <p>@Html.ActionLink("Delete Medium", "Delete", new { id = Model.MediumId })</p>

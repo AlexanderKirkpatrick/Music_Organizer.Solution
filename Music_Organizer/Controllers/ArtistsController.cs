@@ -117,5 +117,32 @@ namespace Music_Organizer.Controllers
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
+
+    public ActionResult AddMedium(int id)
+    {
+      var thisArtist = _db.Artists.FirstOrDefault(artist => artist.ArtistId == id);
+      ViewBag.MediumId = new SelectList(_db.Mediums, "MediumId", "Name");
+      return View(thisArtist);
+    }
+
+    [HttpPost]
+    public ActionResult AddMedium(Artist artist, int MediumId)
+    {
+      if (MediumId != 0)
+      {
+        _db.MediumArtist.Add(new MediumArtist() { MediumId = MediumId, ArtistId = artist.ArtistId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteMedium(int joinId)
+    {
+        var joinEntry = _db.MediumArtist.FirstOrDefault(entry => entry.MediumArtistId == joinId);
+        _db.MediumArtist.Remove(joinEntry);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
   }
 }

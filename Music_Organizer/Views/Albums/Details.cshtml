@@ -19,7 +19,7 @@ else
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Artist.Name</li>
+    <li><a href=/Artists/Details/@join.Artist.ArtistId>@join.Artist.Name</a></li>
   }
   </ul>
   <br>
@@ -27,7 +27,7 @@ else
   <ul>
   @foreach(var join in Model.JoinMediumAlbum)
   {
-    <li>@join.Medium.Name</li>
+    <li><a href=/Mediums/Details/@join.Medium.MediumId>@join.Medium.Name</a></li>
   }
   </ul>
 }
